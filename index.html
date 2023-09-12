@@ -6,6 +6,24 @@
         My Page
     </title>
 
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid darkslategrey;
+            border-collapse: collapse;
+            border-style: groove;
+            text-align: center;
+            padding: 10px;
+        }
+
+        pre {
+            font-family: 'Courier New', Courier, monospace;
+            background: black;
+            color: limegreen;
+        }
+    </style>
+
 <body>
     <h1>
         <i>Akhila Mylavarapu - S566600
@@ -62,7 +80,128 @@
             </ul>
         </li>
     </ul>
-   Click here to see: <a href="mystats.html"><b>My Stats</b></a>
+    Click here to see: <a href="mystats.html"><b>My Stats</b></a>
+
+    <hr>
+    <h2>
+        <center>Recommend Sports</center>
+    </h2>
+    <p>
+        Below is a table displaying information about various Sports. The table includes details such as Sport name,
+        Reason to Recommend to play that Sport and How many hours in an average week that you would spend participating
+        in the
+        sport.
+    </p>
+    <table>
+        <tr>
+            <th>Name of a Sport</th>
+            <th>Reason to Recommend Sport</th>
+            <th>Hours per week</th>
+        </tr>
+        <tr>
+            <td>Badminton</td>
+            <td>It's a sport that people of different fitness levels can enjoy.Badminton involves a range of techniques
+                including smashes, drops, clears, and drives. Players need good hand-eye coordination, agility, and
+                endurance.</td>
+            <td>10 Hours per week</td>
+        </tr>
+        <tr>
+            <td>Basketball</td>
+            <td>Basketball is a team sport that emphasizes collaboration and teamwork. Basketball is played
+                professionally in leagues around the world. The National Basketball Association (NBA) in the United
+                States is one of the most prestigious and widely followed professional leagues.</td>
+            <td>6 Hours per week</td>
+        </tr>
+        <tr>
+            <td>Football</td>
+            <td>Playing on a football team helps develop valuable teamwork and leadership skills. Success in football
+                often requires dedication, discipline, and a strong work ethic. Players must commit to regular practice,
+                physical conditioning, and maintaining a healthy lifestyle. These habits can instill a strong sense of
+                discipline and responsibility.</td>
+            <td>5 Hours per week</td>
+        </tr>
+        <tr>
+            <td>Kabaddi</td>
+            <td>Kabaddi is a dynamic and physically demanding sport that requires a unique combination of skills,
+                including speed, strength, strategy, and quick thinking. It's a game deeply rooted in tradition and has
+                a rich cultural history in South Asia. In recent years, it has gained global recognition as a
+                competitive sport with leagues and tournaments held in various countries.</td>
+            <td>6 Hours per week</td>
+        </tr>
+    </table>
+
+    <hr>
+    <h2>
+        <center>Selecting a Different Code Snippet</center>
+    </h2>
+    <blockquote>
+        <p>
+        <h3>How to update all the columns values from all the tables using a php script?</h3>
+        </p>
+        <footer>
+            <b><i> Stack overflow link for above question:</i></b><a
+                href="https://stackoverflow.com/questions/55374978/how-to-update-all-the-columns-values-from-all-the-tables-using-a-php-script"><b>
+                    Click here</b></a>
+        </footer>
+    </blockquote>
+    <pre>
+            //get data from db
+            $sql = mysql_query("SELECT * FROM table");
+            $count=mysql_num_rows($sql);
+            
+            //start a table
+            echo '<form name="form1" method="post" action="">
+            <table width="292" border="0" cellspacing="1" cellpadding="0">';
+            
+            //start header of table
+            echo '<tr>
+            <th>&nbsp;</th>
+            <th>Name</th>
+            <th>Email</th>
+            </tr>';
+            
+            //loop through all results
+            while($r=mysql_fetch_object($sql)){
+            
+            //print out table contents and add id into an array and email into an array
+            echo '<tr>
+            <td><input type="hidden" name="id[]" value='.$r->id.' readonly></td>
+            <td>'.$r->name.'</td>
+            <td><input name="email[]" type="text" id="price" value="'.$r->email.'"></td>
+            </tr>';
+            }
+            
+            //submit button
+            echo'<tr>
+            <td colspan="3" align="center"><input type="submit" name="Submit" value="Submit"></td>
+            </tr>
+            </table>
+            </form>';
+            
+            
+            // if form has been submitted, process it
+            if($_POST["Submit"])
+            {
+                   // get data from form
+                   $name = $_POST['name'];
+                   // loop through all array items
+               foreach($_POST['id'] as $value)
+                   {
+                   // minus value by 1 since arrays start at 0
+                           $item = $value-1;
+                           //update table
+                   $sql1 = mysql_query("UPDATE table SET email='$email[$item]' WHERE id='$value'") or die(mysql_error());
+               }
+            
+            // redirect user
+            $_SESSION['success'] = 'Updated';
+            header("location:index.php");
+            }
+      </pre>
+
+    <b><i>link for above code:</i></b><a
+        href="https://css-tricks.com/snippets/php/update-values-of-entire-table/"><b>Code Link</b></a>
+
 
 </body>
 </head>
